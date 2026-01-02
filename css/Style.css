@@ -70,7 +70,7 @@ body{
 
 .avatar-ring{
   width: 125px;          /* ⬅ más grande */
-  height:125px;
+  height:px;
   border-radius: 999px;
   padding: 4px;         /* un poco más de marco */
   background: linear-gradient(135deg, var(--accent), #e7a9c0);
