@@ -24,9 +24,8 @@
         </div>
       </header>
 
-
-      <!-- Acciones principales -->
-      <section class="actions">
+      <!-- Acciones -->
+      <section class="actions" aria-label="Acciones principales">
         <a class="btn primary" target="_blank" rel="noopener"
            href="https://wa.me/5493815345124?text=Hola%20Claudia%2C%20te%20consulto%20por%20">
           💬 WhatsApp
@@ -35,11 +34,26 @@
         <a class="btn secondary" href="mailto:cperez@mecontuc.gov.ar">
           ✉️ Email
         </a>
+
+        <a class="btn secondary" target="_blank" rel="noopener"
+           href="https://www.instagram.com/claudi.sperez">
+          📷 Instagram
+        </a>
+
+        <button class="btn secondary copy-btn" type="button" onclick="copyAlias()">
+          💳 Copiar alias
+        </button>
       </section>
 
+      <!-- Alias -->
+      <p class="alias">
+        Alias de pago: <strong id="aliasValue">clau2714</strong>
+        <span class="copied" id="copiedMsg" aria-live="polite">Copiado ✓</span>
+      </p>
 
       <!-- Cargo -->
       <section class="block">
+        <p class="label">Cargo</p>
         <p class="value strong">Directora</p>
         <p class="value">Dirección General de Presupuesto de la Provincia</p>
         <p class="value">Secretaría de Estado de Hacienda</p>
@@ -56,7 +70,7 @@
       </section>
 
       <!-- Contacto -->
-      <section class="grid">
+      <section class="grid" aria-label="Teléfonos">
         <div class="item">
           <p class="label">Teléfono</p>
           <a class="link" href="tel:+543814217274">(0381) 4217274</a>
@@ -68,8 +82,6 @@
         </div>
       </section>
 
-      
-
       <!-- Pie -->
       <footer class="foot">
         <span>@tlaser-Tucuman</span>
@@ -77,6 +89,43 @@
 
     </section>
   </main>
+
+  <script>
+    function copyAlias(){
+      const alias = document.getElementById('aliasValue')?.innerText?.trim() || '';
+      const msg = document.getElementById('copiedMsg');
+
+      if(!alias){
+        alert('No hay alias para copiar');
+        return;
+      }
+
+      const showCopied = () => {
+        if(!msg) return;
+        msg.classList.add('show');
+        setTimeout(() => msg.classList.remove('show'), 1400);
+      };
+
+      if(navigator.clipboard && window.isSecureContext){
+        navigator.clipboard.writeText(alias).then(showCopied).catch(() => fallbackCopy(alias, showCopied));
+      }else{
+        fallbackCopy(alias, showCopied);
+      }
+    }
+
+    function fallbackCopy(text, cb){
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly','');
+      ta.style.position = 'absolute';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try{ document.execCommand('copy'); cb && cb(); }
+      catch(e){ alert('No se pudo copiar el alias'); }
+      document.body.removeChild(ta);
+    }
+  </script>
 
 </body>
 </html>

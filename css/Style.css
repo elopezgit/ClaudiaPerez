@@ -45,10 +45,9 @@ body{
   padding: 18px 14px;
 }
 
-/* Más grande y vertical */
 .card{
   width: 100%;
-  max-width: 430px;         /* más grande */
+  max-width: 430px;
   background: var(--card);
   border-radius: var(--radius);
   padding: 20px 18px 16px;
@@ -69,10 +68,10 @@ body{
 }
 
 .avatar-ring{
-  width: 125px;          /* ⬅ más grande */
-  height:px;
+  width: 110px;      /* foto grande */
+  height: 110px;
   border-radius: 999px;
-  padding: 4px;         /* un poco más de marco */
+  padding: 4px;
   background: linear-gradient(135deg, var(--accent), #e7a9c0);
   flex: 0 0 auto;
 }
@@ -87,9 +86,9 @@ body{
 
 .name{
   margin:0;
-  font-size: 19px;
-  font-weight: 800;
-  letter-spacing: .2px;
+  font-size: 20px;
+  font-weight: 850;
+  letter-spacing:.2px;
 }
 
 .subtitle{
@@ -97,6 +96,82 @@ body{
   font-size: 13.5px;
   font-weight: 650;
   color: var(--accent);
+}
+
+/* =========================
+   ACCIONES (4 botones 2x2)
+========================= */
+.actions{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.btn{
+  width:100%;
+  padding: 12px 12px;
+  border-radius: 16px;
+  text-decoration:none;
+  font-size: 14px;
+  font-weight: 800;
+  text-align:center;
+  border: 1px solid transparent;
+  transition: transform .12s ease, box-shadow .12s ease;
+  user-select:none;
+}
+
+.btn:active{ transform: scale(.99); }
+
+.primary{
+  color:#fff;
+  background: linear-gradient(135deg, var(--accent), #e0a0b8);
+  box-shadow: 0 14px 26px rgba(201,122,155,.30);
+}
+
+.secondary{
+  color: var(--text);
+  background:#fff;
+  border-color: var(--line);
+}
+
+.copy-btn{
+  cursor:pointer;
+}
+
+/* =========================
+   ALIAS
+========================= */
+.alias{
+  margin: 10px 2px 6px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align:center;
+}
+
+.alias strong{
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.copied{
+  display:inline-block;
+  margin-left: 8px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(242,215,226,.35);
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 12px;
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity .15s ease, transform .15s ease;
+}
+
+.copied.show{
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* =========================
@@ -116,7 +191,7 @@ body{
   letter-spacing: .3px;
   text-transform: uppercase;
   color: var(--muted);
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .value{
@@ -128,9 +203,7 @@ body{
 
 .value + .value{ margin-top: 4px; }
 
-.strong{
-  font-weight: 800;
-}
+.strong{ font-weight: 900; }
 
 /* =========================
    GRID CONTACTO
@@ -146,53 +219,18 @@ body{
   padding: 12px;
   border: 1px solid var(--line);
   border-radius: 16px;
-  background: #fff;
+  background:#fff;
 }
 
 .link{
   display:inline-block;
   font-size: 15px;
-  font-weight: 750;
+  font-weight: 850;
   color: var(--accent);
-  text-decoration: none;
+  text-decoration:none;
 }
 
 .link:hover{ text-decoration: underline; }
-
-/* =========================
-   ACCIONES
-========================= */
-.actions{
-  display:flex;
-  gap: 12px;
-  margin-top: 14px;
-}
-
-.btn{
-  flex: 1;
-  padding: 12px 12px;
-  border-radius: 16px;
-  text-decoration:none;
-  font-size: 14px;
-  font-weight: 800;
-  text-align:center;
-  border: 1px solid transparent;
-  transition: transform .12s ease, box-shadow .12s ease;
-}
-
-.btn:active{ transform: scale(.99); }
-
-.primary{
-  color: #fff;
-  background: linear-gradient(135deg, var(--accent), #e0a0b8);
-  box-shadow: 0 14px 26px rgba(201,122,155,.30);
-}
-
-.secondary{
-  color: var(--text);
-  background: #fff;
-  border-color: var(--line);
-}
 
 /* =========================
    FOOTER
@@ -207,11 +245,12 @@ body{
 }
 
 /* =========================
-   MOBILE EXTRA (más aire)
+   MOBILE EXTRA
 ========================= */
 @media (max-width: 380px){
   .card{ padding: 18px 14px 14px; }
-  .grid{ grid-template-columns: 1fr; } /* en pantallas muy chicas, uno debajo del otro */
-  .avatar-ring{ width:72px; height:72px; }
+  .grid{ grid-template-columns: 1fr; }
+  .actions{ grid-template-columns: 1fr; } /* en muy chico, 1 por fila */
+  .avatar-ring{ width: 92px; height: 92px; }
   .name{ font-size: 18px; }
 }
